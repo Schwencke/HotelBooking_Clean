@@ -8,5 +8,7 @@ namespace HotelBooking.Core
         bool CreateBooking(Booking booking);
         int FindAvailableRoom(DateTime startDate, DateTime endDate);
         List<DateTime> GetFullyOccupiedDates(DateTime startDate, DateTime endDate);
+        bool CancelBooking(int id);
+        Booking GetBooking(int id);
     }
 }

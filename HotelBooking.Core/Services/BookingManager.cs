@@ -8,6 +8,7 @@ namespace HotelBooking.Core
     {
         private IRepository<Booking> bookingRepository;
         private IRepository<Room> roomRepository;
+        private DateTime cancelThreshold = DateTime.Today.AddDays(-1);
 
         // Constructor injection
         public BookingManager(IRepository<Booking> bookingRepository, IRepository<Room> roomRepository)
@@ -16,20 +17,47 @@ namespace HotelBooking.Core
             this.roomRepository = roomRepository;
         }
 
+        public Booking GetBooking(int id)
+        {
+                IEnumerable<Booking> allBookings = bookingRepository.GetAll();
+                return allBookings.First(b => b.Id == id);
+        }
+
         public bool CreateBooking(Booking booking)
         {
-            int roomId = FindAvailableRoom(booking.StartDate, booking.EndDate);
-
-            if (roomId >= 0)
+           
+                int roomId = FindAvailableRoom(booking.StartDate, booking.EndDate);
+                if (roomId >= 0)
+                {
+                    booking.RoomId = roomId;
+                    booking.IsActive = true;
+                    bookingRepository.Add(booking);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            
+        }
+        
+        public bool CancelBooking(int id) 
+        {
+            Booking booking = bookingRepository.Get(id);
+            if (booking != null && booking.IsActive)
             {
-                booking.RoomId = roomId;
-                booking.IsActive = true;
-                bookingRepository.Add(booking);
-                return true;
+                //Checking if the booking is meeting the threshold for cansellation (24 hours)
+                if (booking.StartDate > cancelThreshold)
+                {
+                    bookingRepository.Edit(booking);
+                    return true;
+                }
+                throw new InvalidTimeZoneException("Booking cannot be cancelled");
             }
+
             else
             {
-                return false;
+                throw new EntryPointNotFoundException("Booking not found");
             }
         }
 
@@ -73,6 +101,6 @@ namespace HotelBooking.Core
             }
             return fullyOccupiedDates;
         }
-
+      
     }
 }
