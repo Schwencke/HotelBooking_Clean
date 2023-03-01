@@ -41,6 +41,7 @@ namespace HotelBooking.Infrastructure
             DateTime date = DateTime.Today.AddDays(4);
             List<Booking> bookings = new List<Booking>
             {
+                new Booking { StartDate=DateTime.Today, EndDate=DateTime.Today.AddDays(2), IsActive=true, CustomerId=1, RoomId=1 },
                 new Booking { StartDate=date, EndDate=date.AddDays(14), IsActive=true, CustomerId=1, RoomId=1 },
                 new Booking { StartDate=date, EndDate=date.AddDays(14), IsActive=true, CustomerId=2, RoomId=2 },
                 new Booking { StartDate=date, EndDate=date.AddDays(14), IsActive=true, CustomerId=1, RoomId=3 }

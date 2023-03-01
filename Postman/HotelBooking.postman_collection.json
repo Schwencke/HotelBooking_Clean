@@ -7,221 +7,448 @@
 	},
 	"item": [
 		{
-			"name": "rooms - Room 1",
-			"event": [
+			"name": "Rooms",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"description\": \"Room 1\"\n}"
-				},
-				"url": {
-					"raw": "https://localhost:63298/rooms",
-					"protocol": "https",
-					"host": [
-						"localhost"
+					"name": "rooms - Room 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "63298",
-					"path": [
-						"rooms"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "rooms - Room 2",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});"
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
 						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"description\": \"Room 2\"\n}"
-				},
-				"url": {
-					"raw": "https://localhost:63298/rooms",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "63298",
-					"path": [
-						"rooms"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "rooms",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"",
-							"",
-							"",
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response is json\", function () {",
-							"    pm.response.to.be.json;",
-							"});",
-							"",
-							"//pm.test(\"Response length is correct\", function () {",
-							"//    var jsonData = pm.response.json();",
-							"//    pm.expect(jsonData.length).to.eql(2);",
-							"//});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:63298/rooms",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "63298",
-					"path": [
-						"rooms"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "rooms/0",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Response is json\", function () {",
-							"    pm.response.to.be.json;",
-							"});",
-							"",
-							"pm.test(\"Response is badRequest\", function () {",
-							"    pm.response.to.be.badRequest;",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:63298/rooms/0",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "63298",
-					"path": [
-						"rooms",
-						"0"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "rooms/2",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response is json\", function () {",
-							"    pm.response.to.be.json;",
-							"});",
-							"",
-							"pm.test(\"Response has correct room id\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.id).to.eql(2);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Room 1\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:63298/rooms",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "63298",
+							"path": [
+								"rooms"
+							]
+						}
+					},
+					"response": []
 				},
 				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:63298/rooms/2",
-					"protocol": "https",
-					"host": [
-						"localhost"
+					"name": "rooms - Room 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "63298",
-					"path": [
-						"rooms",
-						"2"
-					]
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Room 2\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:63298/rooms",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "63298",
+							"path": [
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rooms",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is json\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"//pm.test(\"Response length is correct\", function () {",
+									"//    var jsonData = pm.response.json();",
+									"//    pm.expect(jsonData.length).to.eql(2);",
+									"//});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:63298/rooms",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "63298",
+							"path": [
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rooms/0",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response is json\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response is badRequest\", function () {",
+									"    pm.response.to.be.badRequest;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:63298/rooms/0",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "63298",
+							"path": [
+								"rooms",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rooms/2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is json\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response has correct room id\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(2);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:63298/rooms/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "63298",
+							"path": [
+								"rooms",
+								"2"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "GetAllBookings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Count should be 4\", function() {\r",
+									"    var data = pm.response.json()\r",
+									"    pm.expect(data.count()).to.equal(4);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:63298/bookings",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "63298",
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBookingById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Mr And.. Smith\", function (){\r",
+									"    var data =  pm.response.json()\r",
+									"    pm.expect(data.customer.name).to.equal(\"John Smith\");\r",
+									"})\r",
+									"\r",
+									"  "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:63298/bookings/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "63298",
+							"path": [
+								"bookings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostNewBooking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.sendRequest(\"https://localhost:63298/bookings\", async function (err, response) {\r",
+									"    console.log(response.json())\r",
+									"    var data = await response.json()\r",
+									"pm.test(\"Count should be 5\", function() {\r",
+									"    pm.expect(data.count()).to.equal(5);\r",
+									"})\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 99,\r\n    \"startDate\": \"2023-08-01T00:00:00+01:00\",\r\n    \"endDate\": \"2023-08-10T00:00:00+01:00\",\r\n    \"isActive\": true,\r\n    \"customerId\": 2,\r\n    \"customer\": {\r\n        \"name\": \"Jane Doe\",\r\n        \"email\": \"jd@gmail.com\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:63298/bookings",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "63298",
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditExistingBookingById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.sendRequest(\"https://localhost:63298/bookings/1\", async function (err, response) {\r",
+									"    var data = await response.json()\r",
+									"pm.test(\"Welcome Jane Doe\", function() {\r",
+									"    pm.expect(data.customer.name).to.equal(\"Jane Doe\");\r",
+									"})\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"startDate\": \"2023-03-01T00:00:00+01:00\",\r\n    \"endDate\": \"2023-03-03T00:00:00+01:00\",\r\n    \"isActive\": false,\r\n    \"customerId\": 2,\r\n    \"roomId\": 1,\r\n    \"customer\": {\r\n        \"id\": 2,\r\n        \"name\": \"Jane Doe\",\r\n        \"email\": \"jd@gmail.com\"\r\n    },\r\n    \"room\": {\r\n        \"id\": 1,\r\n        \"description\": \"A\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:63298/bookings/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "63298",
+							"path": [
+								"bookings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteBookingById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.sendRequest(\"https://localhost:63298/bookings\", async function (err, response) {\r",
+									"    console.log(response.json())\r",
+									"    var data = await response.json()\r",
+									"pm.test(\"Count should be 4\", function() {\r",
+									"    pm.expect(data.count()).to.equal(4);\r",
+									"})\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:63298/bookings/99",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "63298",
+							"path": [
+								"bookings",
+								"99"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

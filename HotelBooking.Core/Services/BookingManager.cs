@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BenchmarkDotNet.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,7 +9,6 @@ namespace HotelBooking.Core
     {
         private IRepository<Booking> bookingRepository;
         private IRepository<Room> roomRepository;
-        private DateTime cancelThreshold = DateTime.Today.AddDays(-1);
 
         // Constructor injection
         public BookingManager(IRepository<Booking> bookingRepository, IRepository<Room> roomRepository)
@@ -19,35 +19,36 @@ namespace HotelBooking.Core
 
         public Booking GetBooking(int id)
         {
-                IEnumerable<Booking> allBookings = bookingRepository.GetAll();
-                return allBookings.First(b => b.Id == id);
+            IEnumerable<Booking> allBookings = bookingRepository.GetAll();
+            return allBookings.First(b => b.Id == id);
         }
 
         public bool CreateBooking(Booking booking)
         {
-           
-                int roomId = FindAvailableRoom(booking.StartDate, booking.EndDate);
-                if (roomId >= 0)
-                {
-                    booking.RoomId = roomId;
-                    booking.IsActive = true;
-                    bookingRepository.Add(booking);
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            
+
+            int roomId = FindAvailableRoom(booking.StartDate, booking.EndDate);
+            if (roomId >= 0)
+            {
+                booking.RoomId = roomId;
+                booking.IsActive = true;
+                bookingRepository.Add(booking);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
-        
-        public bool CancelBooking(int id) 
+
+        public bool CancelBooking(int id)
         {
             Booking booking = bookingRepository.Get(id);
             if (booking != null && booking.IsActive)
             {
                 //Checking if the booking is meeting the threshold for cansellation (24 hours)
-                if (booking.StartDate > cancelThreshold)
+
+                if (DateTime.Today <= booking.StartDate.AddHours(-24))
                 {
                     bookingRepository.Edit(booking);
                     return true;
@@ -78,29 +79,24 @@ namespace HotelBooking.Core
             }
             return -1;
         }
-
         public List<DateTime> GetFullyOccupiedDates(DateTime startDate, DateTime endDate)
         {
             if (startDate > endDate)
                 throw new ArgumentException("The start date cannot be later than the end date.");
 
             List<DateTime> fullyOccupiedDates = new List<DateTime>();
-            int noOfRooms = roomRepository.GetAll().Count();
             var bookings = bookingRepository.GetAll();
-
-            if (bookings.Any())
+            var rooms = roomRepository.GetAll().Count();
+            var bookingCounts = new Dictionary<DateTime, int>();
+            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
             {
-                for (DateTime d = startDate; d <= endDate; d = d.AddDays(1))
+                bookingCounts[date] = bookings.Count(b => date >= b.StartDate && date <= b.EndDate);
+                if (bookingCounts[date] >= rooms)
                 {
-                    var noOfBookings = from b in bookings
-                                       where b.IsActive && d >= b.StartDate && d <= b.EndDate
-                                       select b;
-                    if (noOfBookings.Count() >= noOfRooms)
-                        fullyOccupiedDates.Add(d);
+                    fullyOccupiedDates.Add(date);
                 }
             }
             return fullyOccupiedDates;
         }
-      
     }
 }
