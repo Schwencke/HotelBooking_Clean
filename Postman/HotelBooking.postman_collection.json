@@ -38,12 +38,12 @@
 							"raw": "{\n    \"description\": \"Room 1\"\n}"
 						},
 						"url": {
-							"raw": "https://localhost:63298/rooms",
+							"raw": "https://localhost:5001/rooms",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "63298",
+							"port": "5001",
 							"path": [
 								"rooms"
 							]
@@ -80,12 +80,12 @@
 							"raw": "{\n    \"description\": \"Room 2\"\n}"
 						},
 						"url": {
-							"raw": "https://localhost:63298/rooms",
+							"raw": "https://localhost:5001/rooms",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "63298",
+							"port": "5001",
 							"path": [
 								"rooms"
 							]
@@ -124,12 +124,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:63298/rooms",
+							"raw": "https://localhost:5001/rooms",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "63298",
+							"port": "5001",
 							"path": [
 								"rooms"
 							]
@@ -161,12 +161,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:63298/rooms/0",
+							"raw": "https://localhost:5001/rooms/0",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "63298",
+							"port": "5001",
 							"path": [
 								"rooms",
 								"0"
@@ -212,12 +212,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:63298/rooms/2",
+							"raw": "https://localhost:5001/rooms/2",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "63298",
+							"port": "5001",
 							"path": [
 								"rooms",
 								"2"
@@ -256,12 +256,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:63298/bookings",
+							"raw": "https://localhost:5001/bookings",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "63298",
+							"port": "5001",
 							"path": [
 								"bookings"
 							]
@@ -295,12 +295,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:63298/bookings/1",
+							"raw": "https://localhost:5001/bookings/1",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "63298",
+							"port": "5001",
 							"path": [
 								"bookings",
 								"1"
@@ -320,7 +320,7 @@
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
 									"\r",
-									"pm.sendRequest(\"https://localhost:63298/bookings\", async function (err, response) {\r",
+									"pm.sendRequest(\"https://localhost:5001/bookings\", async function (err, response) {\r",
 									"    console.log(response.json())\r",
 									"    var data = await response.json()\r",
 									"pm.test(\"Count should be 5\", function() {\r",
@@ -345,12 +345,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:63298/bookings",
+							"raw": "https://localhost:5001/bookings",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "63298",
+							"port": "5001",
 							"path": [
 								"bookings"
 							]
@@ -369,8 +369,8 @@
 									"    pm.response.to.have.status(204);\r",
 									"});\r",
 									"\r",
-									"pm.sendRequest(\"https://localhost:63298/bookings/1\", async function (err, response) {\r",
-									"    var data = await response.json()\r",
+									"pm.sendRequest(\"https://localhost:5001/bookings/1\", function (err, response) {\r",
+									"    var data = response.json()\r",
 									"pm.test(\"Welcome Jane Doe\", function() {\r",
 									"    pm.expect(data.customer.name).to.equal(\"Jane Doe\");\r",
 									"})\r",
@@ -393,12 +393,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:63298/bookings/1",
+							"raw": "https://localhost:5001/bookings/1",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "63298",
+							"port": "5001",
 							"path": [
 								"bookings",
 								"1"
@@ -418,7 +418,7 @@
 									"    pm.response.to.have.status(204);\r",
 									"});\r",
 									"\r",
-									"pm.sendRequest(\"https://localhost:63298/bookings\", async function (err, response) {\r",
+									"pm.sendRequest(\"https://localhost:5001/bookings\", async function (err, response) {\r",
 									"    console.log(response.json())\r",
 									"    var data = await response.json()\r",
 									"pm.test(\"Count should be 4\", function() {\r",
@@ -434,12 +434,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:63298/bookings/99",
+							"raw": "https://localhost:5001/bookings/99",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "63298",
+							"port": "5001",
 							"path": [
 								"bookings",
 								"99"
