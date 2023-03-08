@@ -17,11 +17,6 @@ namespace HotelBooking.UnitTests
         private Mock<IRepository<Room>> fakeRoomRepository;
         private Mock<IRepository<Booking>> fakeBookingRepository;
         public BookingManagerTests(){
-          //  DateTime start = DateTime.Today.AddDays(10);
-           // DateTime end = DateTime.Today.AddDays(20);
-           // IRepository<Booking> bookingRepository = new FakeBookingRepository(start, end);
-            //IRepository<Room> roomRepository = new FakeRoomRepository();
-           // bookingManager = new BookingManager(bookingRepository, roomRepository);
 
             // Rooms for the setup of the fake room repository
             var rooms = new List<Room>
@@ -77,7 +72,7 @@ namespace HotelBooking.UnitTests
             // Act
             Booking actual = bookingManager.GetBooking(id);
 
-            // Assert
+            // Assert - Verifying that all properties has changed
             Assert.Equal(expected.Id, actual.Id);
             Assert.Equal(expected.EndDate, actual.EndDate);
             Assert.Equal(expected.StartDate, actual.StartDate);
@@ -98,8 +93,7 @@ namespace HotelBooking.UnitTests
         [Fact]
         public void CancleBooking_BookingCanBeCancel_ReturnTrue()
         {
-            // Arrange
-            //Using booking with ID 3, already setup in the mock repository
+            // Arrange - Using booking with ID 3, already setup in the mock repository
             var bookingId = 3;
             
             // Act
@@ -115,7 +109,6 @@ namespace HotelBooking.UnitTests
         {
             // Arrange
             int idToTest = bookingId;
-            Type exceptionToExpect = expected;
             // Act
             Action act = () => bookingManager.CancelBooking(idToTest);
             // Assert
@@ -141,12 +134,18 @@ namespace HotelBooking.UnitTests
         {
             //A vacant period before the known bookings 
             yield return new object[] { DateTime.Today, DateTime.Today.AddDays(5), 0 };
+            
+            //The Vacant period plus the start of a booking
+            yield return new object[] { DateTime.Today, DateTime.Today.AddDays(10), 1 };
 
             //A period spanning all known bookings
             yield return new object[] { DateTime.Today.AddDays(10), DateTime.Today.AddDays(20), 11 }; 
 
             //A Intersecting period in start to middle
             yield return new object[] { DateTime.Today.AddDays(5), DateTime.Today.AddDays(15), 6 };
+
+            //A Intersecting period in middle to end
+            yield return new object[] { DateTime.Today.AddDays(15), DateTime.Today.AddDays(25), 6 };
 
             //A vacant period after the known bookings 
             yield return new object[] { DateTime.Today.AddDays(21), DateTime.Today.AddDays(25), 0 }; 
