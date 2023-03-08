@@ -193,7 +193,7 @@ namespace HotelBooking.UnitTests
         public void CreateBooking_BookingDateNotInvalid_ThrowsArgumentException(DateTime start, DateTime end)
         {
             //Arrange
-            Booking booking = new() { StartDate = DateTime.Today.AddDays(-10), EndDate = DateTime.Today.AddDays(1) };
+            Booking booking = new() { StartDate= start, EndDate= end };
             //Act
             Action act = () => bookingManager.CreateBooking(booking);
             //Assert
