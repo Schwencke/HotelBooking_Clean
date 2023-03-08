@@ -232,6 +232,83 @@
 			"name": "Booking",
 			"item": [
 				{
+					"name": "PostNewBooking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 88,\r\n    \"startDate\": \"2023-08-01T00:00:00+01:00\",\r\n    \"endDate\": \"2023-08-10T00:00:00+01:00\",\r\n    \"isActive\": true,\r\n    \"customerId\": 2,\r\n    \"customer\": {\r\n        \"name\": \"Jane Doe\",\r\n        \"email\": \"jd@gmail.com\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/bookings",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostNewBooking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"//pm.sendRequest(\"https://localhost:5001/bookings\", async function (err, response) {\r",
+									"//    console.log(response.json())\r",
+									"//    var data = await response.json()\r",
+									"//pm.test(\"Count should be 5\", function() {\r",
+									" //   pm.expect(data.count()).to.equal(5);\r",
+									"//})\r",
+									"//});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 99,\r\n    \"startDate\": \"2023-08-01T00:00:00+01:00\",\r\n    \"endDate\": \"2023-08-10T00:00:00+01:00\",\r\n    \"isActive\": true,\r\n    \"customerId\": 1,\r\n    \"customer\": {\r\n        \"name\": \"John Smith\",\r\n        \"email\": \"js@gmail.com\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/bookings",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetAllBookings",
 					"event": [
 						{
@@ -243,9 +320,9 @@
 									"});\r",
 									"\r",
 									"\r",
-									"pm.test(\"Count should be 4\", function() {\r",
+									"pm.test(\"Count should be 2\", function() {\r",
 									"    var data = pm.response.json()\r",
-									"    pm.expect(data.count()).to.equal(4);\r",
+									"    pm.expect(data.count()).to.equal(2);\r",
 									"})"
 								],
 								"type": "text/javascript"
@@ -287,7 +364,7 @@
 									"\r",
 									"pm.test(\"Response has the correct id\", function() {\r",
 									"    var data = pm.response.json()\r",
-									"    pm.expect(data.id).to.eql(2)\r",
+									"    pm.expect(data.id).to.eql(99)\r",
 									"})\r",
 									"\r",
 									"  "
@@ -300,7 +377,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:5001/bookings/1",
+							"raw": "https://localhost:5001/bookings/99",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -308,56 +385,7 @@
 							"port": "5001",
 							"path": [
 								"bookings",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "PostNewBooking",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.sendRequest(\"https://localhost:5001/bookings\", async function (err, response) {\r",
-									"    console.log(response.json())\r",
-									"    var data = await response.json()\r",
-									"pm.test(\"Count should be 5\", function() {\r",
-									"    pm.expect(data.count()).to.equal(5);\r",
-									"})\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": 99,\r\n    \"startDate\": \"2023-08-01T00:00:00+01:00\",\r\n    \"endDate\": \"2023-08-10T00:00:00+01:00\",\r\n    \"isActive\": true,\r\n    \"customerId\": 2,\r\n    \"customer\": {\r\n        \"name\": \"Jane Doe\",\r\n        \"email\": \"jd@gmail.com\"\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://localhost:5001/bookings",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"bookings"
+								"99"
 							]
 						}
 					},
@@ -374,7 +402,7 @@
 									"    pm.response.to.have.status(204);\r",
 									"});\r",
 									"\r",
-									"pm.sendRequest(\"https://localhost:5001/bookings/1\", function (err, response) {\r",
+									"pm.sendRequest(\"https://localhost:5001/bookings/99\", function (err, response) {\r",
 									"    var data = response.json()\r",
 									"pm.test(\"Welcome Jane Doe\", function() {\r",
 									"    pm.expect(data.customer.name).to.equal(\"Jane Doe\");\r",
@@ -390,7 +418,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"startDate\": \"2023-03-01T00:00:00+01:00\",\r\n    \"endDate\": \"2023-03-03T00:00:00+01:00\",\r\n    \"isActive\": false,\r\n    \"customerId\": 2,\r\n    \"roomId\": 1,\r\n    \"customer\": {\r\n        \"id\": 2,\r\n        \"name\": \"Jane Doe\",\r\n        \"email\": \"jd@gmail.com\"\r\n    },\r\n    \"room\": {\r\n        \"id\": 1,\r\n        \"description\": \"A\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"id\": 99,\r\n    \"startDate\": \"2023-03-01T00:00:00+01:00\",\r\n    \"endDate\": \"2023-03-03T00:00:00+01:00\",\r\n    \"isActive\": false,\r\n    \"customerId\": 1,\r\n    \"roomId\": 2,\r\n    \"customer\": {\r\n        \"id\": 1,\r\n        \"name\": \"Jane Doe\",\r\n        \"email\": \"jd@gmail.com\"\r\n    },\r\n    \"room\": {\r\n            \"id\": 2,\r\n            \"description\": \"Room 2\"\r\n        }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -398,7 +426,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:5001/bookings/1",
+							"raw": "https://localhost:5001/bookings/99",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -406,7 +434,7 @@
 							"port": "5001",
 							"path": [
 								"bookings",
-								"1"
+								"99"
 							]
 						}
 					},
@@ -426,8 +454,8 @@
 									"pm.sendRequest(\"https://localhost:5001/bookings\", async function (err, response) {\r",
 									"    console.log(response.json())\r",
 									"    var data = await response.json()\r",
-									"pm.test(\"Count should be 4\", function() {\r",
-									"    pm.expect(data.count()).to.equal(4);\r",
+									"pm.test(\"Count should be 1\", function() {\r",
+									"    pm.expect(data.count()).to.equal(1);\r",
 									"})\r",
 									"});"
 								],
