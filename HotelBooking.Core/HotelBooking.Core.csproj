@@ -18,5 +18,6 @@
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.5" />
+    <PackageReference Include="PactNet" Version="4.5.0" />
   </ItemGroup>
 </Project>
