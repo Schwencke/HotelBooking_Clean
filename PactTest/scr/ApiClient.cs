@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -65,12 +68,11 @@ namespace Consumer
 
         public async Task<HttpResponseMessage> EditBookingById(int id, string body)
         {
-            HttpContent content = new StringContent(body,Encoding.UTF8, "application/json");
             using (var client = new HttpClient { BaseAddress = BaseUri })
             {
                 try
                 {
-                    var response = await client.PutAsync($"/api/booking/{id}", content);
+                    var response = await client.PutAsJsonAsync($"/api/booking/{id}", body);
                     return response;
                 }
                 catch (Exception ex)

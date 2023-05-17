@@ -1,0 +1,290 @@
+{
+  "consumer": {
+    "name": "ApiClient"
+  },
+  "interactions": [
+    {
+      "description": "A valid request for a booking",
+      "providerStates": [
+        {
+          "name": "There is data"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/booking/1"
+      },
+      "response": {
+        "body": [
+          {
+            "customer": {
+              "email": "jd@gmail.com",
+              "id": 0,
+              "name": "Jane Doe"
+            },
+            "customerId": 1,
+            "endDate": "2023-08-01T01:00:00+02:00",
+            "id": 1,
+            "isActive": true,
+            "room": null,
+            "roomId": 0,
+            "startDate": "2023-08-01T01:00:00+02:00"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 404
+      }
+    },
+    {
+      "description": "A valid request for all bookings",
+      "providerStates": [
+        {
+          "name": "There is data"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/bookings"
+      },
+      "response": {
+        "body": [
+          {
+            "customer": {
+              "email": "jd@gmail.com",
+              "id": 0,
+              "name": "Jane Doe"
+            },
+            "customerId": 1,
+            "endDate": "2023-08-01T01:00:00+02:00",
+            "id": 1,
+            "isActive": true,
+            "room": null,
+            "roomId": 0,
+            "startDate": "2023-08-01T01:00:00+02:00"
+          },
+          {
+            "customer": {
+              "email": "js@gmail.com",
+              "id": 0,
+              "name": "John Smith"
+            },
+            "customerId": 2,
+            "endDate": "2023-08-01T01:00:00+02:00",
+            "id": 2,
+            "isActive": true,
+            "room": null,
+            "roomId": 0,
+            "startDate": "2023-08-01T01:00:00+02:00"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "A valid request for deletion of a booking",
+      "providerStates": [
+        {
+          "name": "There is data"
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "path": "/api/booking/1"
+      },
+      "response": {
+        "status": 204
+      }
+    },
+    {
+      "description": "A valid request for edit of a booking",
+      "providerStates": [
+        {
+          "name": "There is data"
+        }
+      ],
+      "request": {
+        "body": "\r\n                            {\r\n                              \"Id\": 2,\r\n                              \"StartDate\": \"2023-08-01T00:00:00+01:00\",\r\n                              \"EndDate\": \"2023-08-01T00:00:00+01:00\",\r\n                              \"IsActive\": true,\r\n                              \"CustomerId\": 1,\r\n                              \"Customer\": {\r\n                                \"Name\": \"Jane Doe\",\r\n                                \"Email\": \"jd@gmail.com\"\r\n                              }\r\n}",
+        "headers": {
+          "Content-Type": "application/json;charset=utf-8"
+        },
+        "method": "PUT",
+        "path": "/api/booking/2"
+      },
+      "response": {
+        "status": 204
+      }
+    },
+    {
+      "description": "A valid request for deletion of a booking",
+      "providerStates": [
+        {
+          "name": "There is no booking with id"
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "path": "/api/booking/3"
+      },
+      "response": {
+        "status": 404
+      }
+    },
+    {
+      "description": "A valid request for edit of a booking",
+      "providerStates": [
+        {
+          "name": "There is no booking with id"
+        }
+      ],
+      "request": {
+        "body": {
+          "Customer": {
+            "Email": "jd@gmail.com",
+            "Name": "Jane Doe"
+          },
+          "CustomerId": 1,
+          "EndDate": "2023-08-01T00:00:00+01:00",
+          "Id": 2,
+          "IsActive": true,
+          "StartDate": "2023-08-01T00:00:00+01:00"
+        },
+        "headers": {
+          "Content-Type": "application/json;charset=utf-8"
+        },
+        "method": "PUT",
+        "path": "/api/booking/3"
+      },
+      "response": {
+        "status": 404
+      }
+    },
+    {
+      "description": "A valid request for a booking",
+      "providerStates": [
+        {
+          "name": "There is no data"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/booking/3"
+      },
+      "response": {
+        "body": [],
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 404
+      }
+    },
+    {
+      "description": "A valid request for all bookings",
+      "providerStates": [
+        {
+          "name": "There is no data"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/bookings"
+      },
+      "response": {
+        "body": [],
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "A invalid request for edit of a booking",
+      "providerStates": [
+        {
+          "name": "the body provided with the request is bad"
+        }
+      ],
+      "request": {
+        "body": {
+          "status": "Bad Object"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "method": "PUT",
+        "path": "/api/booking/1"
+      },
+      "response": {
+        "status": 400
+      }
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "ffi": "0.4.3",
+      "models": "1.0.9"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "BookingController"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "consumer": {
+    "name": "ApiClient"
+  },
+  "interactions": [
+    {
+      "description": "A valid request for a booking",
+      "providerStates": [
+        {
+          "name": "There is data"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/booking/1"
+      },
+      "response": {
+        "body": {
+          "customer": {
+            "email": "jd@gmail.com",
+            "id": 0,
+            "name": "Jane Doe"
+          },
+          "customerId": 1,
+          "endDate": "2023-08-01T01:00:00+02:00",
+          "id": 1,
+          "isActive": true,
+          "room": null,
+          "roomId": 0,
+          "startDate": "2023-08-01T01:00:00+02:00"
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "A valid request for all bookings",
+      "providerStates": [
+        {
+          "name": "There is data"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/bookings"
+      },
+      "response": {
+        "body": [
+          {
+            "customer": {
+              "email": "jd@gmail.com",
+              "id": 0,
+              "name": "Jane Doe"
+            },
+            "customerId": 1,
+            "endDate": "2023-08-01T01:00:00+02:00",
+            "id": 1,
+            "isActive": true,
+            "room": null,
+            "roomId": 0,
+            "startDate": "2023-08-01T01:00:00+02:00"
+          },
+          {
+            "customer": {
+              "email": "js@gmail.com",
+              "id": 0,
+              "name": "John Smith"
+            },
+            "customerId": 2,
+            "endDate": "2023-08-01T01:00:00+02:00",
+            "id": 2,
+            "isActive": true,
+            "room": null,
+            "roomId": 0,
+            "startDate": "2023-08-01T01:00:00+02:00"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "ffi": "0.4.3",
+      "models": "1.0.9"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "ProductService"
+  }
+}
