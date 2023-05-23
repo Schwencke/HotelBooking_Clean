@@ -27,13 +27,13 @@ namespace PactTest.Tests
        // private readonly int port = 5001;
         private readonly int port = 60472;
         private readonly List<Booking> _bookings;
-        private readonly object _badBooking;
+        private readonly string _badBooking;
         private readonly string _editBooking;
         private readonly string _editNotFoundBooking;
 
         public BookingControllerAPITests(ITestOutputHelper output)
         {
-
+            
             //Creating data for our fakes
 
             DateTime startDate = DateTime.Parse("2023-08-01T00:00:00+01:00");
@@ -49,7 +49,19 @@ namespace PactTest.Tests
             };
 
 
-            _badBooking = new { status = "Bad Object" };
+            _badBooking = @"
+                            {
+                              ""Idd"": 99,
+                              ""StartDatee"": ""2023-08-01T00:00:00+01:00"",
+                              ""EndDatea"": ""2023-08-01T00:00:00+01:00"",
+                              ""IsActivee"": true,
+                              ""CustomerIda"": 1,
+                              ""Customerd"": {
+                                ""Namea"": ""Jane Doe"",
+                                ""Emaile"": ""jd@gmail.com""
+                              }
+}";
+
             _editBooking = @"
                             {
                               ""Id"": 2,
@@ -228,7 +240,7 @@ namespace PactTest.Tests
 
             await pact.VerifyAsync(async ctx =>
             {
-                var response = await ApiClient.EditBookingById(id, JsonConvert.SerializeObject(_badBooking));
+                var response = await ApiClient.EditBookingById(id, _badBooking);
                 Assert.Equal(code, response.StatusCode);
             });
         }

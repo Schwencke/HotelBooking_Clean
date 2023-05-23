@@ -134,7 +134,17 @@
         }
       ],
       "request": {
-        "body": "\r\n                            {\r\n                              \"Id\": 2,\r\n                              \"StartDate\": \"2023-08-01T00:00:00+01:00\",\r\n                              \"EndDate\": \"2023-08-01T00:00:00+01:00\",\r\n                              \"IsActive\": true,\r\n                              \"CustomerId\": 1,\r\n                              \"Customer\": {\r\n                                \"Name\": \"Jane Doe\",\r\n                                \"Email\": \"jd@gmail.com\"\r\n                              }\r\n}",
+        "body": {
+          "Customer": {
+            "Email": "jd@gmail.com",
+            "Name": "Jane Doe"
+          },
+          "CustomerId": 1,
+          "EndDate": "2023-08-01T00:00:00+01:00",
+          "Id": 2,
+          "IsActive": true,
+          "StartDate": "2023-08-01T00:00:00+01:00"
+        },
         "headers": {
           "Content-Type": "application/json;charset=utf-8"
         },
@@ -261,9 +271,7 @@
         }
       ],
       "request": {
-        "body": {
-          "status": "Bad Object"
-        },
+        "body": "\r\n                            {\r\n                              \"Idd\": 99,\r\n                              \"StartDatee\": \"2023-08-01T00:00:00+01:00\",\r\n                              \"EndDatea\": \"2023-08-01T00:00:00+01:00\",\r\n                              \"IsActivee\": true,\r\n                              \"CustomerIda\": 1,\r\n                              \"Customerd\": {\r\n                                \"Namea\": \"Jane Doe\",\r\n                                \"Emaile\": \"jd@gmail.com\"\r\n                              }\r\n}",
         "headers": {
           "Content-Type": "application/json"
         },
